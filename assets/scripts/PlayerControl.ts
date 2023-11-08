@@ -1,11 +1,11 @@
-import { _decorator, CCInteger, Component, find, Node, v3 } from 'cc';
+import { _decorator, CCInteger, Component, find, Node, RigidBody2D, v2 } from 'cc';
 const { ccclass, property } = _decorator;
 import { BgControl } from './BgControl';
 import { GameManager } from './GameManager';
 @ccclass('PlayerControl')
 export class PlayerControl extends Component {
     @property({ type: CCInteger })
-    bounceHeight: number = 200
+    bounceHeight: number = 100
 
     gameManager:GameManager = null
     start() {
@@ -27,10 +27,7 @@ export class PlayerControl extends Component {
         }
     }
     jump() {
-        const { x, y } = this.node.getPosition()
-        console.log('PlayerControl',y);
-        this.node.setPosition(v3(x, y + this.bounceHeight))
-        console.log('end',this.node.position.y);
+        this.getComponent(RigidBody2D).linearVelocity = v2(0,this.bounceHeight)
     }
 }
 
