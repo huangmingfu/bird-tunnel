@@ -10,8 +10,8 @@ export class GameManager extends Component {
     @property(Node)
     public player:Node = null
 
-    public isPlaying:boolean = false
-    public static gameSpeed:number = 500
+    public static isPlaying:boolean = false//游戏开始标志
+    public static gameSpeed:number = 500//游戏速度
     start() {
         this._init()
     }
@@ -20,20 +20,28 @@ export class GameManager extends Component {
         
     }
     _init(){
-        director.pause()
+        this.gameover.active = false
+        game.pause()
     }
 
     //游戏开始
     gameStart(){
-        this.isPlaying = true
+        GameManager.isPlaying = true
         this.gamestart.active = false
         this.node.on(Node.EventType.TOUCH_START,this._TOUCH_START,this)
-        director.resume()
+        game.resume()
     }
     //游戏结束
     gameOver(){
+        GameManager.isPlaying = false
+        this.gameover.active = true
         this.node.off(Node.EventType.TOUCH_START,this._TOUCH_START)
-        // director.end()
+        game.pause()
+    }
+    //游戏重新开始
+    gameRestart(){
+        game.resume()
+        game.restart()
     }
     //玩家弹跳
     _TOUCH_START(){
