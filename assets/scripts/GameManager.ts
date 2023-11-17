@@ -11,7 +11,7 @@ export class GameManager extends Component {
     public player:Node = null
 
     public static isPlaying:boolean = false//游戏开始标志
-    public static gameSpeed:number = 500//游戏速度
+    public static gameSpeed:number = 8//游戏速度
     start() {
         this._init()
     }

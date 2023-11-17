@@ -42,7 +42,7 @@ export class BgControl extends Component {
         if(!GameManager.isPlaying) return
         this.node.children.forEach(itemNode => {
             const { x, y } = itemNode.getPosition()
-            const moveX = x - (GameManager.gameSpeed * deltaTime)
+            const moveX = x - GameManager.gameSpeed
             itemNode.setPosition(v3(moveX, y))
             if (moveX < (-BgControl.bgWidth)) {
                 itemNode.setPosition(v3(moveX + BgControl.bgWidth * 2, y))

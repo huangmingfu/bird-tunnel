@@ -13,7 +13,7 @@ export class PipeControl extends Component {
         if(!GameManager.isPlaying) return
         this.node.children.forEach(itemNode => {
             const { x, y } = itemNode.getPosition()
-            const moveX = x - (GameManager.gameSpeed * deltaTime)
+            const moveX = x - GameManager.gameSpeed
             itemNode.setPosition(v3(moveX, y))
             if (moveX <= (-1200)) {
                 //回到原位
